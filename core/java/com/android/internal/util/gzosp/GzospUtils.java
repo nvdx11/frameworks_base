@@ -39,6 +39,8 @@ import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.os.SystemClock;
+import android.os.RemoteException;
+
 
 import java.util.Locale;
 
@@ -162,6 +164,19 @@ public class GzospUtils {
     }
 
 
+    public static final String INTENT_SCREENSHOT = "action_take_screenshot";
+    public static final String INTENT_REGION_SCREENSHOT = "action_take_region_screenshot";
+
+    public static void takeScreenshot(boolean full) {
+        IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
+        try {
+            wm.sendCustomAction(new Intent(full? INTENT_SCREENSHOT : INTENT_REGION_SCREENSHOT));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     // Omni Switch Constants
 
     /**
@@ -195,3 +210,4 @@ public class GzospUtils {
     public static Intent INTENT_LAUNCH_APP = new Intent(Intent.ACTION_MAIN)
             .setClassName(APP_PACKAGE_NAME, APP_PACKAGE_NAME + ".SettingsActivity");
 }
+
