@@ -22,7 +22,9 @@
     <string name="reboot_to_bootloader_title" translatable="false">Bootloader</string>
     <string name="reboot_to_bootloader_message" translatable="false">Rebooting to bootloader</string>
 
-  <java-symbol type="integer" name="config_buttonBrightnessSettingDefault" />
-  <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_toggleNavigationEditor">control navigation editor</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_toggleNavigationEditor">Allows an application to control the navigation bar editor.</string>
 
 </resources>
