@@ -50,5 +50,8 @@
 
     <!-- Volume panel QS tile -->
     <string name="quick_settings_volume_panel_label">Volume panel</string>
-
+    
+    <!-- Hide bottom lockscreen shortcuts -->
+    <string name="lockscreen_default">Default</string>
+    <string name="lockscreen_hidden">None</string>
 </resources>
