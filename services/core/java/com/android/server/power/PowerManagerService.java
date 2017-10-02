@@ -835,24 +835,12 @@ public final class PowerManagerService extends SystemService
         resolver.registerContentObserver(Settings.Secure.getUriFor(
                 Settings.Secure.DOUBLE_TAP_TO_WAKE),
                 false, mSettingsObserver, UserHandle.USER_ALL);
-<<<<<<< HEAD
         resolver.registerContentObserver(Settings.System.getUriFor(
                 Settings.System.PROXIMITY_ON_WAKE),
                 false, mSettingsObserver, UserHandle.USER_ALL);
-=======
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.AMBIENT_DOZE_CUSTOM_BRIGHTNESS),
-                    false, mSettingsObserver, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.AMBIENT_DOZE_AUTO_BRIGHTNESS),
-                    false, mSettingsObserver, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.Secure.getUriFor(
-                    Settings.Secure.HIGH_BRIGHTNESS_MODE),
-                    false, mSettingsObserver, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.WAKE_WHEN_PLUGGED_OR_UNPLUGGED),
-                    false, mSettingsObserver, UserHandle.USER_ALL);
->>>>>>> 705e79f... Port: Wake on plug (1/2)
+        resolver.registerContentObserver(Settings.System.getUriFor(
+                Settings.System.WAKE_WHEN_PLUGGED_OR_UNPLUGGED),
+                false, mSettingsObserver, UserHandle.USER_ALL);
         IVrManager vrManager = (IVrManager) getBinderService(Context.VR_SERVICE);
         if (vrManager != null) {
             try {
