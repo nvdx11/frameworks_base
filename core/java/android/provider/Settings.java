@@ -4199,6 +4199,11 @@ public final class Settings {
         public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
 
         /**
+        * @hide
+        */		           
+        public static final String SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4373,6 +4378,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_CUSTOM_HEADER_PROVIDER);
             PRIVATE_SETTINGS.add(STATUS_BAR_CUSTOM_HEADER_IMAGE);
             PRIVATE_SETTINGS.add(VOLUME_LINK_NOTIFICATION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_IME_NOTIFICATION);
+            PRIVATE_SETTINGS.add(NAVIGATION_BAR_IME_BUTTON);
+            PRIVATE_SETTINGS.add(SHOW_BATTERY_IMAGE);
+            PRIVATE_SETTINGS.add(BUTTON_SWAP_BACK_RECENTS);
+ 
         }
 
         /**
