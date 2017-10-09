@@ -21,4 +21,7 @@
     <string-array name="config_forceEnabledComponents" translatable="false">
     </string-array>
 
+    <!-- Wheter to enable doze always on -->
+    <bool name="config_enableDozeAlwaysOn">false</bool>
+
 </resources>
