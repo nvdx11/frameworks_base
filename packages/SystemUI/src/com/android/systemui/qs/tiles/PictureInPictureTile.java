@@ -21,7 +21,7 @@ import android.os.UserHandle;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
 
-import com.android.internal.util.nitrogen.NitrogenUtils;
+import com.android.internal.util.gzosp.GzospUtils;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
@@ -37,7 +37,7 @@ public class PictureInPictureTile extends QSTileImpl<BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.NITROGEN_SETTINGS;
+        return MetricsEvent.INVICTUS;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class PictureInPictureTile extends QSTileImpl<BooleanState> {
     @Override
     public void handleClick() {
         mHost.collapsePanels();
-        NitrogenUtils.sendKeycode(171);
+        GzospUtils.sendKeycode(171);
     }
 
     @Override
