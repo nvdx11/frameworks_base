@@ -316,11 +316,6 @@ public final class ShutdownThread extends Thread {
         pd.setCancelable(false);
         pd.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
 
-        WindowManager.LayoutParams attrs = pd.getWindow().getAttributes();
-
-        attrs.alpha = setRebootDialogAlpha(context);
-        pd.getWindow().setDimAmount(setRebootDialogDim(context));
-
         if (!themeShutdownAnimationExists()) {
             pd.show();
         }
