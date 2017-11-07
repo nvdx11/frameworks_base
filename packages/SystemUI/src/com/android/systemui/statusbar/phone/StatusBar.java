@@ -143,7 +143,7 @@ import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.statusbar.NotificationVisibility;
 import com.android.internal.statusbar.StatusBarIcon;
 import com.android.internal.util.NotificationMessagingUtil;
-import com.android.internal.util.omni.DeviceUtils;
+import com.android.internal.util.gzosp.DeviceUtils;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.keyguard.KeyguardHostView.OnDismissAction;
 import com.android.keyguard.KeyguardStatusView;
@@ -5422,7 +5422,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             setStatusBarWindowViewOptions();
             setQsRowsColumns();
             int showNavBar = Settings.System.getIntForUser(
-                    resolver, Settings.System.NAVIGATION_BAR_SHOW,
+                    mContext.getContentResolver(), Settings.System.NAVIGATION_BAR_SHOW,
                     -1, mCurrentUserId);
             if (showNavBar != -1){
                 boolean showNavBarBool = showNavBar == 1;

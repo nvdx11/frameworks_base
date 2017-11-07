@@ -2322,12 +2322,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mDoubleTapOnHomeBehavior = KEY_ACTION_NOTHING;
         }
 
-        mHardwareKeysDisable = Settings.System.getIntForUser(resolver,
-                Settings.System.HARDWARE_KEYS_DISABLE, 0,
-                UserHandle.USER_CURRENT) != 0;
-            mHasNavigationBar = DeviceUtils.deviceSupportNavigationBar(mContext);
-        }
-
         // Check for custom assignments and whether KEY_ACTION_MENU is assigned.
         if (hasHome) {
             mLongPressOnHomeBehavior = Settings.System.getIntForUser(resolver,
@@ -2539,6 +2533,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (mImmersiveModeConfirmation != null) {
                 mImmersiveModeConfirmation.loadSetting(mCurrentUserId);
             }
+               mHardwareKeysDisable = Settings.System.getIntForUser(resolver,
+                       Settings.System.HARDWARE_KEYS_DISABLE, 0,
+                       UserHandle.USER_CURRENT) != 0;
+                   mHasNavigationBar = DeviceUtils.deviceSupportNavigationBar(mContext);
         }
         synchronized (mWindowManagerFuncs.getWindowManagerLock()) {
             PolicyControl.reloadFromSetting(mContext);
@@ -3507,9 +3505,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final int flags = event.getFlags();
         final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
         final boolean canceled = event.isCanceled();
-        final boolean longPress = (flags & KeyEvent.FLAG_LONG_PRESS) != 0;
         final boolean virtualKey = event.getDeviceId() == KeyCharacterMap.VIRTUAL_KEYBOARD;
-        final int scanCode = event.getScanCode();
         // if mHardwareKeysDisable is true we have disabled all button rebindings
         // so we can be sure that events that are !virtuaKey are only for real buttons
         final boolean longPress = (flags & KeyEvent.FLAG_LONG_PRESS) != 0;
@@ -6212,7 +6208,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
         final boolean canceled = event.isCanceled();
         final int keyCode = event.getKeyCode();
-        //final int scanCode = event.getScanCode();
+        final int scanCode = event.getScanCode();
         final boolean virtualKey = event.getDeviceId() == KeyCharacterMap.VIRTUAL_KEYBOARD;
         final boolean isInjected = (policyFlags & WindowManagerPolicy.FLAG_INJECTED) != 0;
 
@@ -6230,6 +6226,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         // Disable all hw keys actions
         if (!hasHwKeysEnabled()) {
+
             if (scanCode != 0 && keyCode == KeyEvent.KEYCODE_HOME) {
                 Log.i(TAG, "Ignoring Home Key: we have hw keys disabled");
                 return 0;

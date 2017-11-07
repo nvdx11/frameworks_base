@@ -4203,6 +4203,12 @@ public final class Settings {
          */
         public static final String NAVIGATION_BAR_SHOW = "navigation_bar_show";
 
+
+	/**
+         * Disable hw buttons - actions, brightness, haptic feedback, overflow menu
+	*/
+        public static final String HARDWARE_KEYS_DISABLE = "hardware_keys_disable";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -4379,6 +4385,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_CUSTOM_HEADER_IMAGE);
             PRIVATE_SETTINGS.add(VOLUME_LINK_NOTIFICATION);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_SHOW);
+            PRIVATE_SETTINGS.add(HARDWARE_KEYS_DISABLE);
         }
 
         /**
