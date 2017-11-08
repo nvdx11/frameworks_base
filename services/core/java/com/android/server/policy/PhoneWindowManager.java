@@ -238,7 +238,7 @@ import com.android.internal.policy.IShortcutService;
 import com.android.internal.policy.PhoneWindow;
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.util.gzosp.GzospUtils;
-import com.android.internal.util.nitrogen.ActionUtils;
+import com.android.internal.util.gzosp.ActionUtils;
 import com.android.internal.util.ScreenShapeHelper;
 import com.android.internal.widget.PointerLocationView;
 import com.android.server.GestureLauncherService;
