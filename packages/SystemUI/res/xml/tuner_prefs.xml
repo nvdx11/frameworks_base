@@ -18,6 +18,11 @@
     xmlns:sysui="http://schemas.android.com/apk/res-auto"
     android:title="@string/system_ui_tuner">
 
+    <com.android.systemui.tuner.TunerSwitch
+        android:key="qs_show_brightness"
+        android:title="@string/show_brightness"
+        sysui:defValue="true" />
+
     <PreferenceScreen
         android:key="status_bar"
         android:title="@string/status_bar" >
@@ -82,10 +87,9 @@
 
         <!-- other weird signal stuff -->
 
-        <com.android.systemui.tuner.BatteryPreference
-            android:title="@string/battery"
-            android:summary="%s"
-            android:entries="@array/battery_options" />
+        <com.android.systemui.tuner.StatusBarSwitch
+            android:key="battery"
+            android:title="@string/battery" />
 
         <com.android.systemui.tuner.StatusBarSwitch
             android:key="alarm_clock"

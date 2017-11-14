@@ -190,6 +190,8 @@
     <!-- to access instant apps -->
     <uses-permission android:name="android.permission.ACCESS_INSTANT_APPS" />
 
+    <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
@@ -252,7 +254,7 @@
                 android:exported="true" />
 
         <activity android:name=".tuner.TunerActivity"
-                  android:enabled="false"
+                  android:enabled="true"
                   android:icon="@drawable/tuner"
                   android:theme="@style/TunerSettings"
                   android:label="@string/system_ui_tuner"
@@ -264,11 +266,13 @@
             </intent-filter>
             <meta-data android:name="com.android.settings.category"
                     android:value="com.android.settings.category.system" />
+            <meta-data android:name="com.android.settings.summary"
+                       android:resource="@string/summary_empty"/>
         </activity>
 
         <activity-alias android:name=".tuner.TunerSettingLink"
                         android:targetActivity=".tuner.TunerActivity"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:process=":tuner">
             <intent-filter android:priority="1">
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
@@ -276,6 +280,8 @@
             </intent-filter>
             <meta-data android:name="com.android.settings.category"
                        android:value="com.android.settings.category.ia.system" />
+            <meta-data android:name="com.android.settings.summary"
+                       android:resource="@string/summary_empty"/>
         </activity-alias>
 
         <activity-alias android:name=".DemoMode"

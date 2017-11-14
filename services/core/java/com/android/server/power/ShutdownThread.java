@@ -299,9 +299,14 @@ public final class ShutdownThread extends Thread {
             }
         } else if (mReason != null && mReason.equals(PowerManager.REBOOT_RECOVERY)) {
             // Factory reset path. Set the dialog message accordingly.
-            pd.setTitle(context.getText(com.android.internal.R.string.reboot_to_reset_title));
+            pd.setTitle(context.getText(com.android.internal.R.string.reboot_to_recovery_title));
             pd.setMessage(context.getText(
-                        com.android.internal.R.string.reboot_to_reset_message));
+                        com.android.internal.R.string.reboot_to_recovery_message));
+            pd.setIndeterminate(true);
+        } else if (mReason != null && mReason.equals(PowerManager.REBOOT_BOOTLOADER)) {
+            pd.setTitle(context.getText(com.android.internal.R.string.reboot_to_bootloader_title));
+            pd.setMessage(context.getText(
+                        com.android.internal.R.string.reboot_to_bootloader_message));
             pd.setIndeterminate(true);
         } else {
             pd.setTitle(context.getText(com.android.internal.R.string.power_off));
@@ -311,7 +316,9 @@ public final class ShutdownThread extends Thread {
         pd.setCancelable(false);
         pd.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
 
-        pd.show();
+        if (!themeShutdownAnimationExists()) {
+            pd.show();
+        }
 
         sInstance.mProgressDialog = pd;
         sInstance.mContext = context;
@@ -376,6 +383,10 @@ public final class ShutdownThread extends Thread {
         {
             String reason = (mReboot ? "1" : "0") + (mReason != null ? mReason : "");
             SystemProperties.set(SHUTDOWN_ACTION_PROPERTY, reason);
+        }
+
+        if (themeShutdownAnimationExists()) {
+            startShutdownAnimation();
         }
 
         /*
@@ -648,6 +659,7 @@ public final class ShutdownThread extends Thread {
      */
     public static void rebootOrShutdown(final Context context, boolean reboot, String reason) {
         if (reboot) {
+            stopShutdownAnimation();
             Log.i(TAG, "Rebooting, reason: " + reason);
             PowerManagerService.lowLevelReboot(reason);
             Log.e(TAG, "Reboot failed, will attempt shutdown instead");
@@ -668,6 +680,8 @@ public final class ShutdownThread extends Thread {
             } catch (InterruptedException unused) {
             }
         }
+
+        stopShutdownAnimation();
 
         // Shutdown power
         Log.i(TAG, "Performing low-level shutdown...");
@@ -730,6 +744,26 @@ public final class ShutdownThread extends Thread {
                 FileUtils.stringToFile(RecoverySystem.UNCRYPT_STATUS_FILE, timeoutMessage);
             } catch (IOException e) {
                 Log.e(TAG, "Failed to write timeout message to uncrypt status", e);
+            }
+        }
+    }
+
+    private static boolean themeShutdownAnimationExists() {
+        return new File("/data/system/theme/shutdownanimation.zip").exists();
+    }
+
+    private static void startShutdownAnimation() {
+        SystemProperties.set("service.bootanim.exit", "0");
+        SystemProperties.set("sys.powerctl", "animate");
+        SystemProperties.set("ctl.start", "bootanim");
+    }
+
+    private static void stopShutdownAnimation() {
+        SystemProperties.set("service.bootanim.exit", "1");
+        while (SystemProperties.get("init.svc.bootanim").equals("running")) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException unused) {
             }
         }
     }

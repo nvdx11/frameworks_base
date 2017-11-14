@@ -1275,6 +1275,8 @@ public class KeyguardViewMediator extends SystemUI {
             if (mLockPatternUtils.isLockScreenDisabled(KeyguardUpdateMonitor.getCurrentUser())
                     && !lockedOrMissing && !forceShow) {
                 if (DEBUG) Log.d(TAG, "doKeyguard: not showing because lockscreen is off");
+                setShowingLocked(false);
+                hideLocked();
                 return;
             }
 
@@ -1825,10 +1827,15 @@ public class KeyguardViewMediator extends SystemUI {
                 playSounds(false);
             }
 
+            boolean wakeAndUnlocking = mWakeAndUnlocking;
             mWakeAndUnlocking = false;
             setShowingLocked(false);
             mDismissCallbackRegistry.notifyDismissSucceeded();
-            mStatusBarKeyguardViewManager.hide(startTime, fadeoutDuration);
+            if (wakeAndUnlocking) {
+                mStatusBarKeyguardViewManager.hideNoAnimation();
+            } else {
+                mStatusBarKeyguardViewManager.hide(startTime, fadeoutDuration);
+            }
             resetKeyguardDonePendingLocked();
             mHideAnimationRun = false;
             adjustStatusBarLocked();
