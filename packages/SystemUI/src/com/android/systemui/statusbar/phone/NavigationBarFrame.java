@@ -22,7 +22,6 @@ import android.annotation.Nullable;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.GestureDetector;
 import android.widget.FrameLayout;
 
 import com.android.internal.util.gzosp.Action;
@@ -31,10 +30,7 @@ import com.android.systemui.statusbar.policy.DeadZone;
 
 public class NavigationBarFrame extends FrameLayout {
 
-    private boolean mIsDoubleTapEnabled;
-
     private DeadZone mDeadZone = null;
-    private GestureDetector mNavDoubleTapToSleep;
     private boolean mEnabled = false;
 
     public NavigationBarFrame(@NonNull Context context) {
@@ -43,14 +39,6 @@ public class NavigationBarFrame extends FrameLayout {
 
     public NavigationBarFrame(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mNavDoubleTapToSleep = new GestureDetector(context,
-                new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                Action.processAction(context, ActionConstants.ACTION_POWER, false);
-                return true;
-            }
-        });
     }
 
     public NavigationBarFrame(@NonNull Context context, @Nullable AttributeSet attrs,
@@ -75,18 +63,5 @@ public class NavigationBarFrame extends FrameLayout {
             }
         }
         return super.dispatchTouchEvent(event);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (mIsDoubleTapEnabled && mNavDoubleTapToSleep != null
-                && mNavDoubleTapToSleep.onTouchEvent(event)) {
-            return true;
-        }
-        return super.onTouchEvent(event);
-    }
-
-    public void setDoubleTapToSleep(boolean isDoubleTapEnabled) {
-        mIsDoubleTapEnabled = isDoubleTapEnabled;
     }
 }

@@ -515,14 +515,11 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
 
         ButtonDispatcher accessibilityButton = mNavigationBarView.getAccessibilityButton();
 
-        setDoubleTapToSleep();
-
         if (accessibilityButton != null) {
             accessibilityButton.setOnClickListener(this::onAccessibilityClick);
             accessibilityButton.setOnLongClickListener(this::onAccessibilityLongClick);
             updateAccessibilityServicesState(mAccessibilityManager);
         }
-
     }
 
     private boolean onHomeTouch(View v, MotionEvent event) {
@@ -935,11 +932,5 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
                 .commit();
         fragmentHost.addTagListener(TAG, listener);
         return navigationBarView;
-    }
-
-    public void setDoubleTapToSleep() {
-        if (mNavigationBarView != null) {
-            mNavigationBarView.setDoubleTapToSleep();
-        }
     }
 }

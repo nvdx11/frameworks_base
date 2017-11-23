@@ -3937,13 +3937,6 @@ public final class Settings {
          * the setting value. See an example above.
          */
 
-        // ABC custom system settings
-        /**
-         * Double tap on navbar to sleep
-         * @hide
-         */
-        public static final String DOUBLE_TAP_SLEEP_NAVBAR = "double_tap_sleep_navbar";
-
         /**
          * Change volume up and down handlign based on rotation
          * @hide
@@ -4349,7 +4342,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCK_TO_APP_ENABLED);
             PRIVATE_SETTINGS.add(EGG_MODE);
             PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
-            PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_NAVBAR);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
             PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
@@ -5701,6 +5693,13 @@ public final class Settings {
          * @hide
          */
         public static final String FLING_LOGO_COLOR = "fling_logo_color";
+
+        /**
+         * Fling logo opacity
+         *
+         * @hide
+         */
+        public static final String FLING_LOGO_OPACITY = "fling_logo_opacity";
 
         /**
          * Fling pulse music visualizer

@@ -31,8 +31,6 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
-import android.os.UserHandle;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
@@ -838,12 +836,6 @@ public class NavigationBarView extends FrameLayout implements Navigator {
     @Override
     public View getBaseView() {
         return this;
-    }
-
-    public void setDoubleTapToSleep() {
-        boolean isDoubleTapEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.DOUBLE_TAP_SLEEP_NAVBAR, 1, UserHandle.USER_CURRENT) == 1;
-        ((NavigationBarFrame) getRootView()).setDoubleTapToSleep(isDoubleTapEnabled);
     }
 
     @Override
