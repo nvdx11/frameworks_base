@@ -32,6 +32,7 @@ import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
+import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.NfcTile;
@@ -76,9 +77,13 @@ public class QSFactoryImpl implements QSFactory {
         else if (tileSpec.equals("nfc")) return new NfcTile(mHost);
         else if (tileSpec.equals("screenshot")) return new ScreenshotTile(mHost);
         else if (tileSpec.equals("heads_up")) return new HeadsUpTile(mHost);
+<<<<<<< HEAD
         else if (tileSpec.equals("ambient_display")) return new AmbientDisplayTile(mHost);
         else if (tileSpec.equals("usb_tether")) return new UsbTetherTile(mHost);
         else if (tileSpec.equals("volume_panel")) return new VolumeTile(mHost);
+=======
+        else if (tileSpec.equals("hwkeys")) return  new HWKeysTile(mHost);
+>>>>>>> 4868a1b6987... SystemUI: Add tile for enable/disable HW keys
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);
