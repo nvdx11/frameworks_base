@@ -7459,12 +7459,6 @@ public final class Settings {
          */
         public static final String FORCE_AUTHORIZE_SUBSTRATUM_PACKAGES = "force_authorize_substratum_packages";
 
-	/**
-         * Whether to allow killing of the foreground app by long-pressing the Back button
-         * @hide
-         */
-        public static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
-        
         /**
          * Whether to set a lower brightness level when enabling night mode
          * 0: Disabled
@@ -7474,7 +7468,6 @@ public final class Settings {
          * @hide
          */
         public static final String NIGHT_BRIGHTNESS_VALUE = "night_brightness_value";
-
         /**
          * This are the settings to be backed up.
          *
